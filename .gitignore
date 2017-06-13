@@ -86,3 +86,5 @@ $RECYCLE.BIN/
 
 
 .idea
+config\index.js
+config/index.js
