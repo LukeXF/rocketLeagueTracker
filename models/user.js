@@ -11,39 +11,7 @@ exports.getRanksFromAPI = function () {
 			if (error) return reject(error);
 			try {
 
-				var ranks = body.split(" | ");
-				var rankValues = [];
-				var finalValues = [];
-				//console.log(arr);
-
-				ranks.forEach(function (item) {
-					rankValues.push(item.split(": "));
-				});
-
-				rankValues.splice(0, 1);
-
-				rankValues.forEach(function (item) {
-
-					var innerRankValues = [];
-					innerRankValues.gameType = item[0];
-
-
-					var arr = item[1].split(" (");
-
-					innerRankValues.rank = arr[0];
-					innerRankValues.value = arr[1].substring(0, arr[1].length - 1);
-
-					finalValues.push(innerRankValues);
-				});
-
-
-				//console.log("1========");
-				//console.log(finalValues);
-				//console.log("2========");
-				//return ;
-				//module.exports = finalValues;
-
-				resolve(finalValues);
+				resolve(body);
 			} catch (e) {
 				reject(e);
 			}

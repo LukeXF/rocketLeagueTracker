@@ -2,11 +2,25 @@ hi {{test}}
 
 <button id="like">h</button>
 
+<div class="result pre">hi</div>
 
 <script>
 
-	$('#like').click(function(){
-		console.log("CLICEKD");
-		$.get('/test');
+	$('#like').click(function () {
+		console.log("Clicked");
+		$.get('/test', function (data) {
+			alert( "Data Loaded: " + data );
+		});
+
+		$.ajax({
+			type: "GET",
+			url: "/test",
+			dataType: "text"
+		}).done(function (res) {
+			alert( "Data Loaded: " + data );
+		}).fail(function (jqXHR, textStatus, errorThrown) {
+			alert("AJAX call failed: " + textStatus + ", " + errorThrown);
+		});
+		console.log("finished");
 	});
 </script>

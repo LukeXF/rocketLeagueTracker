@@ -25,7 +25,8 @@ module.exports.controller = function (app) {
 
 		//var promise = model.getRanksFromAPI();
 		model.getRanksFromAPI().then(function(val) {
-			console.log("VAL: " + val);
+			var test = val;
+			console.log(processData(val));
 		}).catch(function(err) {
 			console.log(err);
 		});
@@ -35,4 +36,33 @@ module.exports.controller = function (app) {
 		console.log("TEST CLICKED");
 	});
 
+};
+
+processData = function (body) {
+	var ranks = body.split(" | ");
+	var rankValues = [];
+	var finalValues = [];
+	//console.log(arr);
+
+	ranks.forEach(function (item) {
+		rankValues.push(item.split(": "));
+	});
+
+	rankValues.splice(0, 1);
+
+	rankValues.forEach(function (item) {
+
+		var innerRankValues = [];
+		innerRankValues.gameType = item[0];
+
+
+		var arr = item[1].split(" (");
+
+		innerRankValues.rank = arr[0];
+		innerRankValues.value = arr[1].substring(0, arr[1].length - 1);
+
+		finalValues.push(innerRankValues);
+	});
+
+	return finalValues;
 };
