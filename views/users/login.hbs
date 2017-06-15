@@ -1,4 +1,4 @@
-hi {{test}}
+hi {{title}}
 
 <button id="like">h</button>
 
@@ -9,18 +9,19 @@ hi {{test}}
 	$('#like').click(function () {
 		console.log("Clicked");
 		$.get('/test', function (data) {
-			alert( "Data Loaded: " + data );
+			console.log(data );
+			$('.result').html(data);
 		});
 
-		$.ajax({
-			type: "GET",
-			url: "/test",
-			dataType: "text"
-		}).done(function (res) {
-			alert( "Data Loaded: " + data );
-		}).fail(function (jqXHR, textStatus, errorThrown) {
-			alert("AJAX call failed: " + textStatus + ", " + errorThrown);
-		});
+		//$.ajax({
+		//	type: "GET",
+		//	url: "/test",
+		//	dataType: "text"
+		//}).done(function (res) {
+		//	alert( "Data Loaded: " + data );
+		//}).fail(function (jqXHR, textStatus, errorThrown) {
+		//	alert("AJAX call failed: " + textStatus + ", " + errorThrown);
+		//});
 		console.log("finished");
 	});
 </script>

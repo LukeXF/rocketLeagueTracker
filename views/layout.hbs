@@ -1,19 +1,26 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>{{title}}</title>
-	<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">
-	<link href='//fonts.googleapis.com/css?family=Roboto:400,700,100,300|Lato:300,400' rel='stylesheet' type='text/css'>
-	<link rel='stylesheet' href='/stylesheets/style.css'/>
-
-
-	<script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	<script type="text/javascript"
-	        src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.min.js"></script>
-</head>
+{{>header}}
+{{>nav}}
 <body>
+
+<div class="jumbotron small">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-8">
+				{{#if config.pageTitle}}
+					<h1>{{config.pageTitle}}</h1>
+				{{else}}
+					<h1>{{config.siteTitle}}</h1>
+				{{/if}}
+			</div>
+			<div class="col-md-4">
+			</div>
+		</div>
+	</div>
+</div>
+
  <div class="container">
 	 {{{body}}}
  </div>
+
 </body>
-</html>
+{{>footer}}

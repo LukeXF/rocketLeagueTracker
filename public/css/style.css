@@ -1,0 +1,84 @@
+body {
+  font-family: "proxima-nova", sans-serif;
+  background: #282b2d;
+  color: white; }
+
+.animate, .navbar .navbar-brand, .navbar .nav > li a, .animate:hover, .navbar .navbar-brand:hover, .navbar .nav > li a:hover, .animate:focus, .navbar .navbar-brand:focus, .navbar .nav > li a:focus {
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out; }
+
+.title, .navbar .navbar-brand, .jumbotron h1 {
+  border-radius: 4px;
+  font-family: 'Lato', sans-serif;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-top: 10px; }
+
+.navbar {
+  background: rgba(40, 43, 45, 0.9);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  border-color: #000000;
+  z-index: 2; }
+  .navbar .navbar-brand {
+    color: #FFF;
+    opacity: 0.8; }
+    .navbar .navbar-brand:hover {
+      color: #FFF;
+      opacity: 1; }
+  .navbar .nav > li {
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: white; }
+    .navbar .nav > li a {
+      color: white;
+      opacity: 0.8; }
+    .navbar .nav > li a:hover, .navbar .nav > li.current > a {
+      color: white;
+      opacity: 1; }
+
+.jumbotron {
+  min-height: 700px;
+  position: relative;
+  overflow: hidden;
+  background-color: rgba(0, 167, 124, 0.5);
+  padding-top: 75px;
+  margin-bottom: 0;
+  border-bottom: 1px solid #494949; }
+  .jumbotron:before {
+    background: url("../img/rlbg.jpg") center center;
+    z-index: -2; }
+  .jumbotron:before, .jumbotron:after {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; }
+  .jumbotron h1 {
+    padding: 40px 0;
+    margin: 40px auto 0;
+    font-size: 40px;
+    text-align: left;
+    color: white;
+    font-weight: bold; }
+  .jumbotron img {
+    position: absolute;
+    width: 1500px;
+    height: 422px;
+    bottom: -5px;
+    left: 50%;
+    margin-left: -750px;
+    margin-bottom: -30px;
+    border-radius: 5px; }
+  .jumbotron.small {
+    height: 200px;
+    min-height: 200px;
+    padding: 30px; }
+
+/*# sourceMappingURL=style.css.map */
