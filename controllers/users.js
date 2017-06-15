@@ -25,8 +25,15 @@ module.exports.controller = function (app) {
 
 		//var promise = model.getRanksFromAPI();
 		model.getRanksFromAPI().then(function(val) {
-			var test = val;
-			console.log(processData(val));
+			var test = processData(val);
+
+
+			console.log(test);
+			console.log(JSON.stringify(test));
+
+
+			res.setHeader('Content-Type', 'application/json');
+			res.send(test);
 		}).catch(function(err) {
 			console.log(err);
 		});
@@ -41,7 +48,7 @@ module.exports.controller = function (app) {
 processData = function (body) {
 	var ranks = body.split(" | ");
 	var rankValues = [];
-	var finalValues = [];
+	var finalValues = {};
 	//console.log(arr);
 
 	ranks.forEach(function (item) {
@@ -50,9 +57,10 @@ processData = function (body) {
 
 	rankValues.splice(0, 1);
 
+	var i = 0;
 	rankValues.forEach(function (item) {
 
-		var innerRankValues = [];
+		var innerRankValues = {};
 		innerRankValues.gameType = item[0];
 
 
@@ -61,8 +69,11 @@ processData = function (body) {
 		innerRankValues.rank = arr[0];
 		innerRankValues.value = arr[1].substring(0, arr[1].length - 1);
 
-		finalValues.push(innerRankValues);
+
+		finalValues[i] = innerRankValues;
+		i++;
 	});
 
+	console.log(finalValues);
 	return finalValues;
 };
