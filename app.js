@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 var sassMiddleware = require('node-sass-middleware');
 var index = require('./routes/index');
 var users = require('./routes/users');
+var fs = require('fs');
 
 var app = express();
 
@@ -28,6 +29,13 @@ app.use(sassMiddleware({
 }));
 app.use(express.static(path.join(__dirname, 'public')));
 
+// dynamically include routes (Controller)
+fs.readdirSync('./controllers').forEach(function (file) {
+	if(file.substr(-3) == '.js') {
+		route = require('./controllers/' + file);
+		route.controller(app);
+	}
+});
 app.use('/', index);
 app.use('/users', users);
 
