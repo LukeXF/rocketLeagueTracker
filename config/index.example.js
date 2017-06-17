@@ -10,7 +10,8 @@ let config = {
 		},
 		siteTitle: 'Rocket League Tracker',
 		navTitle: '<b>RL</b> Tracker',
-		pageTitle: false
+		pageTitle: false,
+		siteRoute: "http://localhost:3000/"
 	},
 	staging: {
 		mode: 'staging',
@@ -23,7 +24,8 @@ let config = {
 		},
 		siteTitle: 'Rocket League Tracker',
 		navTitle: '<b>RL</b> Tracker',
-		pageTitle: false
+		pageTitle: false,
+		siteRoute: "http://localhost:4000/"
 	},
 	production: {
 		mode: 'production',
@@ -36,7 +38,8 @@ let config = {
 		},
 		siteTitle: 'Rocket League Tracker',
 		navTitle: '<b>RL</b> Tracker',
-		pageTitle: false
+		pageTitle: false,
+		siteRoute: "http://localhost:5000/"
 	}
 };
 module.exports = function (mode) {

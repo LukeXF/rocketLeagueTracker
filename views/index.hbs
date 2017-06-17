@@ -32,7 +32,7 @@
 							alert("no button selected");
 						}
 
-						parameters = {search: user};
+						parameters = {user: user};
 						$.get('api/search/' + platform, parameters, function (data) {
 
 							if (data === true) {

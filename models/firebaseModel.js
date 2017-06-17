@@ -9,7 +9,7 @@ firebase.initializeApp(config.firebase);
 
 exports.saveNewRank = function (user, platform, data) {
 
-	console.log(chalk.cyan("SAVING DATA TO FIREBASE"));
+	console.log(chalk.cyan("SAVING DATA FOR " + platform + "/" + user + " TO FIREBASE"));
 
 	const coeff = 1000 * 60 * 2;
 	const date = new Date();  //or use any other date
@@ -44,7 +44,7 @@ exports.saveNewRank = function (user, platform, data) {
 
 exports.checkIfExists = function (user, platform) {
 
-	console.log(chalk.green("CHECKING IF " + user + " EXISTS FROM FIREBASE"));
+	console.log(chalk.green("CHECKING IF " + platform + "/" + user + " EXISTS IN FIREBASE"));
 
 	return new Promise(function (resolve, reject) {
 
@@ -55,7 +55,7 @@ exports.checkIfExists = function (user, platform) {
 			const data = snapshot.exists(); // true
 
 			if (data) {
-				console.log(chalk.blue("Value Found", data));
+				console.log(chalk.blue("User exists"));
 				resolve(true);
 			} else {
 				console.log(chalk.red("No data Found"));
@@ -63,7 +63,9 @@ exports.checkIfExists = function (user, platform) {
 			}
 		}, function (error) {
 			// The callback failed.
-			reject(error);
+			reject("Firebase says: " + error);
+		}).catch(function () {
+			console.log("Promise Rejected");
 		});
 
 	});
@@ -73,7 +75,7 @@ exports.checkIfExists = function (user, platform) {
 
 exports.getRanks = function (user, platform) {
 
-	console.log(chalk.green("LOADING DATA FROM FIREBASE"));
+	console.log(chalk.green("LOADING DATA FOR " + platform + "/" + user + " FROM FIREBASE"));
 
 	const coeff = 1000 * 60 * 2;
 	const date = new Date();  //or use any other date

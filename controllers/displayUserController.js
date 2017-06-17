@@ -4,38 +4,6 @@ const config = require('../config')();
 
 module.exports.controller = function (app) {
 
-	/**
-	 * API search
-	 * TODO: move to api controller
-	 */
-	app.get('/api/search/:platform', function (req, res) {
-
-		const val = req.query.search;
-		const platform = req.params.platform;
-		console.log(val, platform);
-		//res.render('users/login',  { config: config })
-
-		firebase.checkIfExists(val, platform).then(function (id) {
-			res.send(id);
-		}).catch(function(err){
-
-			console.log(chalk.red("==============================="));
-			console.log(err);
-			console.log(chalk.red("==============================="));
-
-			res.locals.message = err.message;
-			res.locals.err = req.app.get('env') === 'development' ? err : {};
-
-			// render the err page
-			res.status(err.status || 500);
-			res.render('error');
-
-			//res.status(500).send(error);
-		});
-
-
-	});
-
 	app.get('/', function (req, res) {
 
 		config.pageTitle = 'Homepage';

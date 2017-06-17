@@ -4,6 +4,7 @@ const chalk = require('chalk');
 
 module.exports.controller = function (app) {
 
+
 	/**
 	 * The currentRank route, with no user or platform entered.
 	 */
@@ -11,11 +12,11 @@ module.exports.controller = function (app) {
 	app.get('/api/currentRank', function (req, res) {
 
 		let data = {};
+		res.setHeader('Content-Type', 'application/json');
 
 		data.message = "No user or platform defined. Please use the format (currentRank/user/platform).";
 		data.error = true;
 
-		res.setHeader('Content-Type', 'application/json');
 		res.send(data);
 	});
 
@@ -27,11 +28,11 @@ module.exports.controller = function (app) {
 	app.get('/api/currentRank/:user', function (req, res) {
 
 		let data = {};
+		res.setHeader('Content-Type', 'application/json');
 
 		data.message = "No platform defined. Please user either xbox, ps or steam. (currentRank/user/platform).";
 		data.error = true;
 
-		res.setHeader('Content-Type', 'application/json');
 		res.send(data);
 	});
 
@@ -42,12 +43,12 @@ module.exports.controller = function (app) {
 
 	app.get('/api/currentRank/:user/:platform', function (req, res) {
 
-		app.locals.title = "test";
+		let data = {};
+		res.setHeader('Content-Type', 'application/json');
+
 		const user = req.params.user;
 		const platform = req.params.platform;
 
-		res.setHeader('Content-Type', 'application/json');
-		let data = {};
 
 		model.getRanksFromAPI(user, platform).then(function (returnedData) {
 
