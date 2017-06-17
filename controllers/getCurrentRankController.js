@@ -8,7 +8,7 @@ module.exports.controller = function (app) {
 	 * The currentRank route, with no user or platform entered.
 	 */
 
-	app.get('api/currentRank', function (req, res) {
+	app.get('/api/currentRank', function (req, res) {
 
 		let data = {};
 
@@ -24,7 +24,7 @@ module.exports.controller = function (app) {
 	 * The user has been entered, but a platform has not been defined.
 	 */
 
-	app.get('api/currentRank/:user', function (req, res) {
+	app.get('/api/currentRank/:user', function (req, res) {
 
 		let data = {};
 
@@ -40,8 +40,9 @@ module.exports.controller = function (app) {
 	 * The correct url structure for a currentRank request.
 	 */
 
-	app.get('api/currentRank/:user/:platform', function (req, res) {
+	app.get('/api/currentRank/:user/:platform', function (req, res) {
 
+		app.locals.title = "test";
 		const user = req.params.user;
 		const platform = req.params.platform;
 

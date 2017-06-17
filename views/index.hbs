@@ -6,8 +6,13 @@
 			<div class="form-group">
 				<label class="sr-only" for="exampleInputAmount">Search for User</label>
 				<div class="input-group">
-					<div class="input-group-addon">PS4</div>
-					<input type="text" class="form-control" id="search" placeholder="Search for user">
+
+                    <span class="input-group-btn" id="buttons">
+                        <button class="btn btn-default" value="steam" type="button">Steam</button>
+                        <button class="btn btn-default" value="xbox" type="button">Xbox</button>
+                        <button class="btn btn-default active" value="ps" type="button">PS4</button>
+                    </span>
+					<input class="form-control" id="search" placeholder="Search for user">
 				</div>
 			</div>
 		</div>
@@ -15,14 +20,33 @@
 		<h2 id="results"></h2>
 
 		<script>
-			$(function(){
-				$('#search').on('keyup', function(e){
-					if(e.keyCode === 13) {
-						var parameters = { search: $(this).val() };
-						$.get( '/search',parameters, function(data) {
-							$('#results').html(data);
+			$(function () {
+				$('#search').on('keyup', function (e) {
+					if (e.keyCode === 13) {
+
+						var user = $(this).val();
+						var platform = $('button.active').val();
+
+						// TODO: add cookie to keep track of selected platform
+						if (platform === undefined) {
+							alert("no button selected");
+						}
+
+						parameters = {search: user};
+						$.get('api/search/' + platform, parameters, function (data) {
+
+							if (data === true) {
+								window.location.replace("/user/" + user + "/" + platform);
+							} else {
+								$('#results').html("Unable to find user " + user + " on " + platform + ". Please check the input and try again.");
+							}
 						});
-					};
+					}
+				});
+
+				$('button').on('click', function (e) {
+					$('button').removeClass("active");
+					$(this).addClass("active");
 				});
 			});
 		</script>

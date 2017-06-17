@@ -24,7 +24,7 @@ exports.saveNewRank = function (user, platform, data) {
 	//console.log(day, month, year);
 
 	// const placementPoint = firebase.database().ref(platform + "/" + user + "/" + month + "-" + year + "/" + day + "/" + rounded);
-	const placementPoint = firebase.database().ref(platform + "/" + user + "/" + rounded);
+	const placementPoint = firebase.database().ref(platform + "/" + user.toLowerCase() + "/" + rounded);
 
 	placementPoint.once('value').then(function (snapshot) {
 
@@ -58,7 +58,7 @@ exports.checkIfExists = function (user, platform) {
 				console.log(chalk.blue("Value Found", data));
 				resolve(true);
 			} else {
-				console.log(chalk.blue("No data Found"));
+				console.log(chalk.red("No data Found"));
 				resolve(false);
 			}
 		}, function (error) {

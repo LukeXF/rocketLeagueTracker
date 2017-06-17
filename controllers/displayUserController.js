@@ -5,16 +5,18 @@ const config = require('../config')();
 module.exports.controller = function (app) {
 
 	/**
-	 * About page route
+	 * API search
+	 * TODO: move to api controller
 	 */
-	app.get('/search', function (req, res) {
+	app.get('/api/search/:platform', function (req, res) {
 
-		let val = req.query.search;
-		console.log(val);
+		const val = req.query.search;
+		const platform = req.params.platform;
+		console.log(val, platform);
 		//res.render('users/login',  { config: config })
 
-		firebase.checkIfExists(val, "ps").then(function (id) {
-			res.send(val + val + id);
+		firebase.checkIfExists(val, platform).then(function (id) {
+			res.send(id);
 		}).catch(function(err){
 
 			console.log(chalk.red("==============================="));
@@ -40,12 +42,24 @@ module.exports.controller = function (app) {
 		res.render('index', {title: 'Express', config: config});
 	});
 
+	app.get('/user/', function (req, res) {
+
+		res.redirect('/');
+	});
+
 	app.get('/user/:user', function (req, res) {
 
 		config.pageTitle = req.params.user;
 		config.user = req.params.user;
 		res.render('users/userNoPlatform', {title: 'Express', config: config});
 	});
+
+
+	app.get('/users/', function (req, res) {
+
+		res.redirect('user');
+	});
+
 
 	app.get('/user/:user/:platform', function (req, res) {
 
