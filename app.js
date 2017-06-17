@@ -6,7 +6,6 @@ const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const sassMiddleware = require('node-sass-middleware');
 const hbs = require('hbs');
-const index = require('./routes/index');
 const users = require('./routes/users');
 const fs = require('fs');
 const app = express();
@@ -38,7 +37,7 @@ fs.readdirSync('./controllers').forEach(function (file) {
 		route.controller(app);
 	}
 });
-app.use('/', index);
+
 app.use('/users', users);
 
 // catch 404 and forward to error handler

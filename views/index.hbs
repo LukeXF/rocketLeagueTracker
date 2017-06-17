@@ -1,2 +1,30 @@
-<h1>{{title}}</h1>
-<p>Welcome to {{title}}</p>
+<div class="row">
+	<div class="col-md-12">
+
+
+		<div class="form-inline">
+			<div class="form-group">
+				<label class="sr-only" for="exampleInputAmount">Search for User</label>
+				<div class="input-group">
+					<div class="input-group-addon">PS4</div>
+					<input type="text" class="form-control" id="search" placeholder="Search for user">
+				</div>
+			</div>
+		</div>
+
+		<h2 id="results"></h2>
+
+		<script>
+			$(function(){
+				$('#search').on('keyup', function(e){
+					if(e.keyCode === 13) {
+						var parameters = { search: $(this).val() };
+						$.get( '/search',parameters, function(data) {
+							$('#results').html(data);
+						});
+					};
+				});
+			});
+		</script>
+	</div>
+</div>

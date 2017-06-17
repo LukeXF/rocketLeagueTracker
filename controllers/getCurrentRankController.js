@@ -5,18 +5,10 @@ const chalk = require('chalk');
 module.exports.controller = function (app) {
 
 	/**
-	 * About page route
-	 */
-	app.get('/login', function (req, res) {
-
-		res.render('users/login',  { title: "OMG" })
-	});
-
-	/**
 	 * The currentRank route, with no user or platform entered.
 	 */
 
-	app.get('/currentRank', function (req, res) {
+	app.get('api/currentRank', function (req, res) {
 
 		let data = {};
 
@@ -32,7 +24,7 @@ module.exports.controller = function (app) {
 	 * The user has been entered, but a platform has not been defined.
 	 */
 
-	app.get('/currentRank/:user', function (req, res) {
+	app.get('api/currentRank/:user', function (req, res) {
 
 		let data = {};
 
@@ -48,7 +40,7 @@ module.exports.controller = function (app) {
 	 * The correct url structure for a currentRank request.
 	 */
 
-	app.get('/currentRank/:user/:platform', function (req, res) {
+	app.get('api/currentRank/:user/:platform', function (req, res) {
 
 		const user = req.params.user;
 		const platform = req.params.platform;

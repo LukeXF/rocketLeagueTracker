@@ -4,6 +4,7 @@ const chalk = require('chalk');
 
 exports.getRanksFromAPI = function (user, platform) {
 	return new Promise(function (resolve, reject) {
+
 		console.log(chalk.cyan("Loading data for user ", user, "on platform", platform));
 		request("http://y9lw.com/hosted/rocketleague/rankapi.php?user=" + user + "&plat=" + platform, function (error, response, body) {
 			console.log(chalk.blue("==============================="));
@@ -14,9 +15,9 @@ exports.getRanksFromAPI = function (user, platform) {
 
 			if (error) return reject(error);
 			try {
-				if ( response.statusCode >= 500 && response.statusCode <= 600) {
+				if (response.statusCode >= 500 && response.statusCode <= 600) {
 					reject(response.statusCode);
-				} else if ( response.statusCode === 404) {
+				} else if (response.statusCode === 404) {
 					reject(response.statusCode);
 				} else {
 					resolve(body);
@@ -25,15 +26,8 @@ exports.getRanksFromAPI = function (user, platform) {
 				reject(e);
 			}
 
-
-
 		});
 
 	});
 
 };
-
-
-//console.log(request2);
-
-

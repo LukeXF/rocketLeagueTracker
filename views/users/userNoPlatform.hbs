@@ -1,0 +1,27 @@
+<div class="row">
+	<div class="col-md-12">
+		<h1>Select a platform to search with for user {{config.user}}</h1>
+	</div>
+</div>
+
+<script>
+
+	$('#like').click(function () {
+		console.log("Clicked");
+		$.get('/test', function (data) {
+			console.log(data );
+			$('.result').html(data);
+		});
+
+		//$.ajax({
+		//	type: "GET",
+		//	url: "/test",
+		//	dataType: "text"
+		//}).done(function (res) {
+		//	alert( "Data Loaded: " + data );
+		//}).fail(function (jqXHR, textStatus, errorThrown) {
+		//	alert("AJAX call failed: " + textStatus + ", " + errorThrown);
+		//});
+		console.log("finished");
+	});
+</script>
