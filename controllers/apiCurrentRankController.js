@@ -50,24 +50,13 @@ module.exports.controller = function (app) {
 		const platform = req.params.platform;
 
 
-		model.getRanksFromAPI(user, platform).then(function (returnedData) {
+		model.getRanksFromSite(user, platform).then(function (returnedData) {
 
-			if (returnedData.includes("current ranks")) {
-				data = processData(returnedData);
-				firebase.saveNewRank(user, platform, data);
-			} else if (returnedData.includes("has no ranks yet.")) {
-				data.message = user + " has no ranks yet.";
-				data.error = true;
-			} else if (returnedData.includes("was not found")) {
-				data.message = user + " was not found on the RLTrackerNetwork";
-				data.url = "https://rocketleague.tracker.network/profile/ps/" + user;
-				data.error = true;
-			} else {
-				data.message = "Unable to make an API request";
-				data.error = true;
-			}
-
+			data.timestamp = Date.now();
+			data.ranks = returnedData;
 			res.send(data);
+
+			firebase.saveNewRank(user, platform, returnedData);
 
 		}).catch(function (err) {
 			console.log(chalk.red("==============================="));
@@ -78,6 +67,36 @@ module.exports.controller = function (app) {
 			data.error = true;
 			res.send(data);
 		});
+
+		/*
+			model.getRanksFromAPI(user, platform).then(function (returnedData) {
+				if (returnedData.includes("current ranks")) {
+					data = processData(returnedData);
+					firebase.saveNewRank(user, platform, data);
+				} else if (returnedData.includes("has no ranks yet.")) {
+					data.message = user + " has no ranks yet.";
+					data.error = true;
+				} else if (returnedData.includes("was not found")) {
+					data.message = user + " was not found on the RLTrackerNetwork";
+					data.url = "https://rocketleague.tracker.network/profile/ps/" + user;
+					data.error = true;
+				} else {
+					data.message = "Unable to make an API request";
+					data.error = true;
+				}
+
+				res.send(data);
+
+			}).catch(function (err) {
+				console.log(chalk.red("==============================="));
+				console.log(err);
+				console.log(chalk.red("==============================="));
+
+				data.message = "Error Code: " + err + ".";
+				data.error = true;
+				res.send(data);
+			});
+		*/
 
 
 	});

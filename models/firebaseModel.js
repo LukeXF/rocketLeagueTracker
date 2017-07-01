@@ -44,6 +44,7 @@ exports.saveNewRank = function (user, platform, data) {
 
 exports.checkIfExists = function (user, platform) {
 
+	user = user.toLowerCase();
 	console.log(chalk.green("CHECKING IF " + platform + "/" + user + " EXISTS IN FIREBASE"));
 
 	return new Promise(function (resolve, reject) {
